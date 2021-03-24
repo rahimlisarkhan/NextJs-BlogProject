@@ -1,0 +1,55 @@
+.cleints-container{
+    display: flex;
+
+    section{
+        background-color: rgb(246, 246, 246);
+        width:20%;
+        height: 100vh;
+        padding: 3rem;
+        font-size: 3rem;
+        
+        li{
+            margin: 2rem 0;
+        }
+
+        a{  
+            color: black;
+        }
+    }
+
+}
+
+.client-project{
+    padding: 4rem;
+    h1{
+        font-size: 4rem;
+    }
+
+    &__container{
+        display: flex;
+        flex-wrap: wrap;
+        padding: 4rem;
+
+        &__card{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            width: 20%;
+            box-shadow: 0 .1rem 3rem rgba(0, 0, 0, 0.562);
+            height: 14rem;
+            margin: 2rem;
+            background-color: white;
+            
+            button{
+                font-size: 2rem;
+                background-color: indianred;
+                color: white;
+                border: none;
+                padding: 1rem;
+            }
+        }
+    }
+
+
+}
