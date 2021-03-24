@@ -1,0 +1,50 @@
+@import 'reset';
+
+*{
+  box-sizing: border-box;
+  transition: all .3s;
+}
+
+html{
+  font-size: 62.5%; 
+}
+
+body{
+  color: white;
+  background-color: rgb(151, 151, 151);
+  padding: 0;
+  margin: 0;
+
+}
+
+header{
+  display: flex;
+  font-size: 3rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  background-color: rgba(54, 54, 54, 0.788);
+  height: 6rem;
+  
+  h1{
+    font-size: 4rem;
+  }
+
+    ul{
+      width: 30%;
+      display: flex;
+      justify-content: space-evenly;
+        a{
+          color: white;
+          letter-spacing: .2rem;
+          text-transform: lowercase;
+          text-decoration: none;
+        }
+    }
+}
+
+main{
+  h1{
+    font-size: 3rem;
+  }
+}
