@@ -4,6 +4,9 @@
 @import './general/base';
 @import './general/header';
 
+//Common
+@import './common/loader';
+
 //Pages
 @import './pages/home/HomePage';
 @import './pages/clients/ClientPage';

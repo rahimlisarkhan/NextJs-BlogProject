@@ -2,12 +2,11 @@ import { useState } from "react";
 import Button from "../ui/button";
 
 const EventSearch = (props) => {
-  const [year, setYear] = useState("");
-  const [month, setMonth] = useState("");
+  const [year, setYear] = useState(2021),
+        [month, setMonth] = useState(1);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-
     props.findEventHandler(year, month);
   };
 
@@ -17,16 +16,14 @@ const EventSearch = (props) => {
         <div className="event-search__content__group">
           <label htmlFor="year">Year</label>
           <select id="year" onChange={(e) => setYear(e.target.value)}>
-            <option value="2020" default disabled>Year</option>
-            <option value="2020">2020</option>
-            <option value="2021">2021</option>
+            <option value="2021" selected>2021</option>
+            <option value="2022">2022</option>
           </select>
         </div>
         <div className="event-search__content__group">
           <label htmlFor="month">Month</label>
-          <select id="month" onChange={(e) => setMonth(e.target.value)}>
-            <option value="1" default disabled>Month</option>
-            <option value="1">January</option>
+          <select id="month"  onChange={(e) => setMonth(e.target.value)}>
+            <option value="1" selected >January</option>
             <option value="2">February</option>
             <option value="3">March</option>
             <option value="4">April</option>
@@ -43,6 +40,8 @@ const EventSearch = (props) => {
       </div>
 
       <Button>Finds Events</Button>
+      <Button link='/events/list'>All Events</Button>
+
     </form>
   );
 };

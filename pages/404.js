@@ -1,11 +1,13 @@
+import Layout from "../components/layout/layout"
+import ErrorAlert from "../components/ui/error-alert"
 
 
-let NotFoundPage = () => {
+const NotFoundPage = () => {
 
     return (
-        <div>
-            <h1>Page not found!</h1>
-        </div>
+        <Layout>
+            <ErrorAlert>Page not found!</ErrorAlert>
+        </Layout>
     )
 }
 

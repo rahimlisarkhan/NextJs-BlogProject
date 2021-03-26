@@ -1,8 +1,10 @@
-import Head from 'next/head'
 import {useRouter} from 'next/router'
-import Eventlist from '../../components/events/event-list';
 import { getFeaturedEvents } from '../../data/dummy-data'
+import {findEventHandler} from '../../action'
+//components
+import Head from 'next/head'
 import Layout from '../../components/layout/layout';
+import Eventlist from '../../components/events/event-list';
 import EventSearch from '../../components/events/event-search';
 
 
@@ -11,11 +13,6 @@ let EventsPage = () => {
 
   const featuredEvents = getFeaturedEvents()
   const router = useRouter()
-
-  const findEventHandler = (year,month)=> {
-    router.push(`/events/list/${year}/${month}`)
-
-  }
 
   return (
     <>
@@ -42,7 +39,7 @@ let EventsPage = () => {
       </Head>
 
       <Layout>
-          <EventSearch findEventHandler={findEventHandler}/>
+          <EventSearch findEventHandler={(year,month) => findEventHandler(year,month,router.push)}/>
           <Eventlist items={featuredEvents} />
       </Layout>
       

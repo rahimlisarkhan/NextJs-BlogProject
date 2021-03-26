@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { jsx as _jsx } from \"react/jsx-runtime\";\n\nvar EventContent = function EventContent(props) {\n  return /*#__PURE__*/_jsx(\"section\", {\n    className: \"event-details__content\",\n    children: props.children\n  });\n};\n\nexport default EventContent;","map":null,"metadata":{},"sourceType":"module"}
