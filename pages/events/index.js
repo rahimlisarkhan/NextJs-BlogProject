@@ -1,9 +1,22 @@
 import Head from 'next/head'
-import Header from '../../components/header';
+import {useRouter} from 'next/router'
+import Eventlist from '../../components/events/event-list';
+import { getFeaturedEvents } from '../../data/dummy-data'
+import Layout from '../../components/layout/layout';
+import EventSearch from '../../components/events/event-search';
 
 
 
 let EventsPage = () => {
+
+  const featuredEvents = getFeaturedEvents()
+  const router = useRouter()
+
+  const findEventHandler = (year,month)=> {
+    router.push(`/events/list/${year}/${month}`)
+
+  }
+
   return (
     <>
       <Head>
@@ -28,10 +41,11 @@ let EventsPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
-      <Header />
-
-
-      <div>EventsPage</div>
+      <Layout>
+          <EventSearch findEventHandler={findEventHandler}/>
+          <Eventlist items={featuredEvents} />
+      </Layout>
+      
     </>
   );
 };

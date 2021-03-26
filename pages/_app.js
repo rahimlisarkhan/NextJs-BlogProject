@@ -1,7 +1,6 @@
 import '../sass/globals.scss'
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+let App = ({ Component, pageProps }) => <Component {...pageProps} />
 
-export default MyApp
+
+export default App

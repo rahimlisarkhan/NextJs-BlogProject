@@ -1,17 +1,11 @@
 import Link from "next/link";
-import Header from "../../components/Header";
+import Header from "../../components/layout/header";
 import Head from "next/head";
+import {getAllClients} from '../../data/dummy-data'
 
 let ClientPage = () => {
-  //data
-  const clients = [
-    { id: 1, name: "Adam" },
-    { id: 2, name: "Ashley" },
-    { id: 3, name: "John" },
-    { id: 4, name: "Joe" },
-    { id: 5, name: "Marry" },
-    { id: 6, name: "Maria" },
-  ];
+  
+  const clients = getAllClients()
 
   return (
     <>

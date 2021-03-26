@@ -7,7 +7,7 @@ const DUMMY_EVENTS = [
       location: 'Somestreet 25, 12345 San Somewhereo',
       date: '2021-05-12',
       image: 'images/img2.jpg',
-      isFeatured: false,
+      isFeatured: true,
     },
     {
       id: 'e2',
@@ -27,21 +27,38 @@ const DUMMY_EVENTS = [
       location: 'My Street 12, 10115 Broke City',
       date: '2022-04-10',
       image: 'images/img1.jpg',
-      isFeatured: true,
+      isFeatured: false,
     },
   ];
   
+const CLIENTS = [
+    { id: 1, name: "Adam" },
+    { id: 2, name: "Ashley" },
+    { id: 3, name: "John" },
+    { id: 4, name: "Joe" },
+    { id: 5, name: "Marry" },
+    { id: 6, name: "Maria" },
+  ];
+
+const PROJECTS = [
+    { id: 1, name: "Project-A" },
+    { id: 2, name: "Project-B" },
+    { id: 3, name: "Project-C" },
+    { id: 4, name: "Project-D" },
+    { id: 5, name: "Project-E" },
+  ];
 
 
-  export function getFeaturedEvents() {
-    return DUMMY_EVENTS.filter((event) => event.isFeatured);
-  }
+  //Action
+  export const getFeaturedEvents = () => DUMMY_EVENTS.filter(event => event.isFeatured);
   
-  export function getAllEvents() {
-    return DUMMY_EVENTS;
-  }
+  export const getAllEvents = () => DUMMY_EVENTS;
   
-  export function getFilteredEvents(dateFilter) {
+  export const getAllClients = () => CLIENTS ;
+
+  export const getAllProjects = () => PROJECTS ;
+
+  export const getFilteredEvents = (dateFilter) => {
     const { year, month } = dateFilter;
   
     let filteredEvents = DUMMY_EVENTS.filter((event) => {
@@ -52,6 +69,5 @@ const DUMMY_EVENTS = [
     return filteredEvents;
   }
   
-  export function getEventById(id) {
-    return DUMMY_EVENTS.find((event) => event.id === id);
-  }
+  export const getEventById = (id) => DUMMY_EVENTS.find((event) => event.id === id);
+  

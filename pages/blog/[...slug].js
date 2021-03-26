@@ -5,7 +5,6 @@ let BlogPageSlug = () => {
 
     const router = useRouter()
     
-    console.log(router);
     return(
         <div>
             <h1>

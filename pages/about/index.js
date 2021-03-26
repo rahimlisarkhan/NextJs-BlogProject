@@ -1,4 +1,4 @@
-import Header from "../../components/Header";
+import Header from "../../components/layout/header";
 import Head from 'next/head'
 
 
@@ -14,10 +14,10 @@ let AboutPage = () => {
             <meta http-equi="refresh" content="5; url='write the url of your website'"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         </Head>
-      <Header />
-      <main>
+
+      <Layout>
         <h1>About page</h1>
-      </main>
+      </Layout>
     </>
   );
 };

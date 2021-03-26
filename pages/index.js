@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Header from '../components/header'
+import Layout from '../components/layout/layout';
 
 let HomePage = () => {
 
@@ -17,10 +17,11 @@ let HomePage = () => {
         <title>Nextjs Project</title>
     </Head>
     
-    <Header/>
-    <main>
+      
+    <Layout>
       <h1>Home page</h1>
-    </main>
+    </Layout>
+    
     </>
   )
 }

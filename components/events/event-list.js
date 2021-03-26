@@ -6,8 +6,8 @@ let Eventlist = (props) => {
     const {items} = props
 
     return (
-        <ul>
-            {items.map(item => <EventItem/> )}
+        <ul className='event-list'>
+            {items.map(item => <EventItem key={item.id} item={item} /> )}
         </ul>
     )
 }
