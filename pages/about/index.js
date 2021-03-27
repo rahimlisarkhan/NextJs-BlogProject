@@ -1,5 +1,6 @@
 import Header from "../../components/layout/header";
 import Head from 'next/head'
+import Layout from "../../components/layout/layout";
 
 
 let AboutPage = () => {

@@ -1,9 +1,12 @@
 import Head from 'next/head'
+import fs from 'fs/promises'
+import path from 'path'
 import Layout from '../components/layout/layout';
 
 let HomePage = (props) => {
 
-  console.log(props);
+  const {products} = props
+
   return(
     <>
     <Head>
@@ -20,6 +23,9 @@ let HomePage = (props) => {
       
     <Layout>
       <h1>Home page</h1>
+      <ul>
+          {products.map(el => <li key={el.id} >{el.name}</li>)}
+      </ul>
     </Layout>
     
     </>
@@ -27,11 +33,18 @@ let HomePage = (props) => {
 }
 
 export async function getStaticProps() {
+  console.log('generate page...');
+
+  const filePath =  path.join(process.cwd(),'data', 'dummy-backend.json'),
+        jsonData = await fs.readFile(filePath),
+        data = JSON.parse(jsonData);
 
   return{
     props: {
-      products:[{id:'1',name:'Product 1'}]
-    }
+      products:data.product
+    },
+
+    revalidate:5
   }
 }
 
