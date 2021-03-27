@@ -1,7 +1,8 @@
-import Head from 'next/head'
 import {useRouter} from 'next/router'
 import {getAllEvents} from '../../../data/dummy-data'
 import {findEventHandler} from '../../../action'
+
+import Head from 'next/head'
 import Eventlist from '../../../components/events/event-list'
 import EventSearch from '../../../components/events/event-search'
 import Layout from '../../../components/layout/layout'

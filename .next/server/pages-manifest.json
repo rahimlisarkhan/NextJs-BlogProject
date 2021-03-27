@@ -2,10 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/events/list/[...slug]": "pages/events/list/[...slug].js",
-  "/events/list": "pages/events/list.js",
-  "/clients": "pages/clients.js",
   "/events": "pages/events.js",
-  "/": "pages/index.js",
-  "/events/list/[eventid]": "pages/events/list/[eventid].js"
+  "/": "pages/index.js"
 }

@@ -11,8 +11,8 @@ import EventSearch from '../../components/events/event-search';
 
 let EventsPage = () => {
 
-  const featuredEvents = getFeaturedEvents()
-  const router = useRouter()
+  const featuredEvents = getFeaturedEvents(),
+        router = useRouter()
 
   return (
     <>
@@ -44,8 +44,8 @@ let EventsPage = () => {
       </Layout>
       
     </>
-  );
-};
+  )
+}
 
 
 export default EventsPage

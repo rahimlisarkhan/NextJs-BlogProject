@@ -7,7 +7,8 @@ import EventSearch from '../../../components/events/event-search'
 import Layout from "../../../components/layout/layout";
 import ErrorAlert from "../../../components/ui/error-alert";
 
-let FilteredEventsPage = () => {
+
+const FilteredEventsPage = () => {
   const router = useRouter();
 
   if (!router.query.slug) { return <Loading />}

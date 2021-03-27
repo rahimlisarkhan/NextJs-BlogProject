@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import Layout from '../components/layout/layout';
 
-let HomePage = () => {
+let HomePage = (props) => {
 
-
+  console.log(props);
   return(
     <>
     <Head>
@@ -25,5 +25,15 @@ let HomePage = () => {
     </>
   )
 }
+
+export async function getStaticProps() {
+
+  return{
+    props: {
+      products:[{id:'1',name:'Product 1'}]
+    }
+  }
+}
+
 
 export default HomePage;
