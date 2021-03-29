@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { jsx as _jsx } from \"react/jsx-runtime\";\n\nconst Footer = () => {\n  return /*#__PURE__*/_jsx(\"footer\", {\n    className: \"footer\",\n    children: /*#__PURE__*/_jsx(\"h1\", {\n      children: \"Copyright \\xA9 2021 Native\"\n    })\n  });\n};\n\nexport default Footer;","map":null,"metadata":{},"sourceType":"module"}

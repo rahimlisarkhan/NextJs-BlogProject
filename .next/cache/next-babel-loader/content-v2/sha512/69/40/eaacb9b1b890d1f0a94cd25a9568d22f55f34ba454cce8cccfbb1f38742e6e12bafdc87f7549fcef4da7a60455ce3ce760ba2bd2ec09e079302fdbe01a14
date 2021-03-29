@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { jsx as _jsx } from \"react/jsx-runtime\";\n\nvar ErrorAlert = function ErrorAlert(props) {\n  return /*#__PURE__*/_jsx(\"section\", {\n    className: \"error-section\",\n    children: /*#__PURE__*/_jsx(\"p\", {\n      children: props.children\n    })\n  });\n};\n\nexport default ErrorAlert;","map":null,"metadata":{},"sourceType":"module"}

@@ -1,0 +1,1 @@
+{"ast":null,"code":"//find event for router\nexport var findEventHandler = function findEventHandler(year, month, callback) {\n  callback(\"/events/list/\".concat(year, \"/\").concat(month));\n};","map":null,"metadata":{},"sourceType":"module"}

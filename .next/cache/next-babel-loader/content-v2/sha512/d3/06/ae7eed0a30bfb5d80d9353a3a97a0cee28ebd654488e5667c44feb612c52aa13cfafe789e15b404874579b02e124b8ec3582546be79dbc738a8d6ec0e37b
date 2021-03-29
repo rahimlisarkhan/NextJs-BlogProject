@@ -1,0 +1,1 @@
+{"ast":null,"code":"//find event for router\nexport const findEventHandler = (year, month, callback) => {\n  callback(`/events/list/${year}/${month}`);\n};","map":null,"metadata":{},"sourceType":"module"}
