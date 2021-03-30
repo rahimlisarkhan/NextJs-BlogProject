@@ -1,6 +1,8 @@
 import {useRouter} from 'next/router'
-import {getAllEvents} from '../../../data/dummy-data'
-import {findEventHandler} from '../../../action'
+import {findEventHandler} from '../../../redux-store/action'
+import { initializeStore } from '../../../redux-store/store'
+import { getEventsData } from '../../../api/event'
+import * as actionTypes from '../../../redux-store/type'
 
 import Head from 'next/head'
 import Eventlist from '../../../components/events/event-list'
@@ -8,11 +10,12 @@ import EventSearch from '../../../components/events/event-search'
 import Layout from '../../../components/layout/layout'
 
 
-let EventsListPage = () => {
+let EventsListPage = (props) => {
 
-    const allEvents = getAllEvents()
     const router = useRouter()
-  
+
+    const {eventPage} = props.initialReduxState
+
     return (
         <>
             <Head>
@@ -39,10 +42,34 @@ let EventsListPage = () => {
 
             <Layout>
                 <EventSearch findEventHandler={(year,month) => findEventHandler(year,month,router.push)}/>
-                <Eventlist items={allEvents} />
+                <Eventlist items={eventPage.events} />
             </Layout>
         </>
     )
 }
+
+
+
+export async function getServerSideProps() {
+    const reduxStore = initializeStore(),
+         { dispatch } = reduxStore
+  
+    const res = await getEventsData()
+    const events = [];
+
+    for(const key in res.data){
+      events.push({
+        id:key,
+        ...res.data[key]}
+        )}
+        
+    dispatch({type:actionTypes.GET_EVENTS, payload:events})  
+    
+  
+    return { props: { initialReduxState: reduxStore.getState() } }
+  }
+  
+
+
 
 export default EventsListPage

@@ -1,18 +1,19 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
+import { getEventsData } from "../../../api/event";
 import EventContent from "../../../components/events/detail/event-content";
 import EventLogistics from "../../../components/events/detail/event-logistics";
 import EventSummary from "../../../components/events/detail/event-summary";
 import Layout from "../../../components/layout/layout";
-import { getEventById } from "../../../data/dummy-data";
+import { initializeStore } from "../../../redux-store/store";
+import * as actionTypes from '../../../redux-store/type'
 
-let EventDetailPage = () => {
-  const router = useRouter();
-
-  const event = getEventById(router.query.eventid);
+let EventDetailPage = (props) => {
 
 
-  if (!event) {
+  const {events} = props.initialReduxState.eventPage
+  console.log(props);
+
+  if (!events) {
     return <p>No event found!</p>;
   }
 
@@ -43,13 +44,38 @@ let EventDetailPage = () => {
       
     <Layout>
         <div className="event-details">
-            <EventSummary title={event.title} />
-            <EventLogistics event={event} />
-            <EventContent><p>{event.description}</p></EventContent>
+            <EventSummary title={events.title} />
+            <EventLogistics event={events} />
+            <EventContent><p>{events.description}</p></EventContent>
         </div>
     </Layout>
     </>
 );
 };
+
+export async function getServerSideProps(context){
+  const {params} = context
+
+  const reduxStore = initializeStore(),
+        {dispatch} = reduxStore
+
+        const res = await getEventsData()
+        const events = [];
+    
+        for(const key in res.data){
+          events.push({
+            id:key,
+            ...res.data[key]}
+            )}
+        
+        const event = events.find((event) => params.eventid === event.id);
+
+        dispatch({type:actionTypes.GET_EVENTS, payload:event})  
+        
+      
+        return { props: { initialReduxState: reduxStore.getState() } }
+
+}
+
 
 export default EventDetailPage;
