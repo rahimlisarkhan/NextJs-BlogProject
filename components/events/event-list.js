@@ -7,7 +7,7 @@ let Eventlist = (props) => {
 
     return (
         <ul className='event-list'>
-            {items.map(item => <EventItem key={item.id} item={item} /> )}
+            {items && items.map(item => <EventItem key={item.id} item={item} /> )}
         </ul>
     )
 }
