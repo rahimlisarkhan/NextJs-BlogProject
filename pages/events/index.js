@@ -3,13 +3,12 @@ import {findEventHandler} from '../../redux-store/action'
 import { initializeStore } from '../../redux-store/store'
 import * as actionTypes from '../../redux-store/type'
 
-
 //components
 import Head from 'next/head'
 import Layout from '../../components/layout/layout';
 import Eventlist from '../../components/events/event-list';
 import EventSearch from '../../components/events/event-search';
-import { getEventsData } from '../../api/event';
+import { getFeaturedEvents } from '../../data/dummy-data'
 
 
 
@@ -52,24 +51,16 @@ let EventsPage = (props) => {
 }
 
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const reduxStore = initializeStore(),
        { dispatch } = reduxStore
 
-  const res = await getEventsData()
-  const events = [];
-  for(const key in res.data){
-    events.push({
-      id:key,
-      ...res.data[key]}
-      )}
-      
-  const isFeatured =  events.filter(event => event.isFeatured)
-  dispatch({type:actionTypes.IS_FEATURED, payload:isFeatured})  
+  const data = await getFeaturedEvents()
+  dispatch({type:actionTypes.IS_FEATURED, payload:data})  
   
-
-
-  return { props: { initialReduxState: reduxStore.getState() } }
+  return { props: { initialReduxState: reduxStore.getState() }, revalidate:1800}
 }
 
 export default EventsPage
+
+

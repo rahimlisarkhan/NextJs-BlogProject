@@ -50,26 +50,15 @@ let EventsListPage = (props) => {
 
 
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
     const reduxStore = initializeStore(),
          { dispatch } = reduxStore
   
-    const res = await getEventsData()
-    const events = [];
+    const data = await getEventsData()
+    dispatch({type:actionTypes.GET_EVENTS, payload:data})  
 
-    for(const key in res.data){
-      events.push({
-        id:key,
-        ...res.data[key]}
-        )}
-        
-    dispatch({type:actionTypes.GET_EVENTS, payload:events})  
-    
-  
-    return { props: { initialReduxState: reduxStore.getState() } }
+    return { props: { initialReduxState: reduxStore.getState() },revalidate:60 }
   }
   
-
-
 
 export default EventsListPage

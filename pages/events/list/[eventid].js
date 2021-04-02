@@ -4,6 +4,7 @@ import EventContent from "../../../components/events/detail/event-content";
 import EventLogistics from "../../../components/events/detail/event-logistics";
 import EventSummary from "../../../components/events/detail/event-summary";
 import Layout from "../../../components/layout/layout";
+import { getEventById } from "../../../data/dummy-data";
 import { initializeStore } from "../../../redux-store/store";
 import * as actionTypes from '../../../redux-store/type'
 
@@ -23,6 +24,10 @@ let EventDetailPage = (props) => {
 
         <meta charset="UTF-8" />
         <meta
+          name="name"
+          content={events.description}
+        />
+        <meta
           name="keywords"
           content="give a short or mid description about the content keywords of your website"
         />
@@ -40,8 +45,8 @@ let EventDetailPage = (props) => {
           content="5; url='write the url of your website'"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{events.title}</title>
       </Head>
-      
     <Layout>
         <div className="event-details">
             <EventSummary title={events.title} />
@@ -53,27 +58,29 @@ let EventDetailPage = (props) => {
 );
 };
 
-export async function getServerSideProps(context){
+export async function getStaticProps(context){
   const {params} = context
 
   const reduxStore = initializeStore(),
         {dispatch} = reduxStore
 
-        const res = await getEventsData()
-        const events = [];
-    
-        for(const key in res.data){
-          events.push({
-            id:key,
-            ...res.data[key]}
-            )}
-        
-        const event = events.find((event) => params.eventid === event.id);
-
-        dispatch({type:actionTypes.GET_EVENTS, payload:event})  
+        const res = await getEventById(params.eventid)
+        dispatch({type:actionTypes.GET_EVENTS, payload:res})  
         
       
-        return { props: { initialReduxState: reduxStore.getState() } }
+        return { props: { initialReduxState: reduxStore.getState() },revalidate:30 }
+}
+
+
+export async function getStaticPaths(){
+  const events = await getEventsData()
+
+  const path = events.map(event =>({params:{eventid:event.id}}))
+
+  return { 
+    paths:path,
+    fallback:'blocking'
+  }
 
 }
 

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Button from '../ui/button'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 import { MdDateRange } from 'react-icons/md'
@@ -21,8 +22,7 @@ let EventItem = (props) => {
 
     return(
         <li className='event-list__item'>
-            
-            <img src={`/${item.image}`} alt='event' />
+            <Image src={`/${item.image}`} alt='event' width={300} height={300} />
             
             <div className='event-list__item__info'>
                 <div className='event-list__item__info__desc'>
